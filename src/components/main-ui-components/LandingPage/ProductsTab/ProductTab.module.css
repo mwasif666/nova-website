@@ -1,0 +1,317 @@
+/* Container */
+.section {
+  position: relative;
+  width: 100%;
+}
+
+/* replaces your inline margin: 0px 80px; */
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* Top Heading */
+.topHead {
+  padding-top: 72px;
+  padding-bottom: 44px;
+  text-align: center;
+}
+
+.kickerWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+}
+
+.kickerLine {
+  height: 1px;
+  width: 44px;
+  background: rgba(148, 163, 184, 0.5);
+}
+
+.kickerText {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: rgba(71, 85, 105, 0.9);
+}
+
+.sectionTitle {
+  margin-top: 18px;
+  font-weight: 800;
+  font-size: 56px;
+  line-height: 1.05;
+  color: #0f172a;
+}
+
+/* Rows */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 42px;
+  align-items: center;
+  padding: 44px 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.orderA {
+  order: 1;
+}
+.orderB {
+  order: 2;
+}
+
+/* Sub heading (dot + text) */
+.subRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dotOuter {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: rgba(41, 106, 146, 0.18);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dotInner {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #296a92;
+}
+
+.subTitle {
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #296a92;
+}
+
+/* Big heading */
+.bigHeading {
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  font-size: 2.5rem;
+  color: #0f172a;
+  max-width: 720px;
+}
+
+.paragraph {
+  font-size: 18px;
+  line-height: 1.75;
+  color: rgba(51, 65, 85, 0.95);
+  max-width: 520px;
+}
+
+/* Image */
+.imageCol {
+  display: flex;
+  justify-content: center;
+}
+
+.imageCard {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 52 / 36; /* responsive height */
+  border-radius: 18px;
+  overflow: hidden;
+  background: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.15);
+}
+
+.image {
+  object-fit: cover;
+  transition: filter 300ms ease;
+}
+
+.imageCard:hover .image {
+  filter: brightness(1.08);
+}
+
+/* Button */
+.btnFix {
+  margin-top: 4px;
+}
+
+/* Sticky tabs */
+.stickyBar {
+  position: sticky;
+  bottom: 0;
+  z-index: 30;
+  margin-top: 10px;
+  border-top: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  box-shadow: 0 -10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.tabsScroller {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  justify-content: center;
+}
+.tabsScroller::-webkit-scrollbar {
+  display: none;
+}
+
+.tabBtn {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 250ms ease;
+  border: 1px solid transparent;
+}
+
+.tabActive {
+  background: #296a92;
+  color: #fff;
+  box-shadow: 0 14px 30px rgba(41, 106, 146, 0.25);
+}
+
+.tabIdle {
+  background: #f1f5f9;
+  color: rgba(51, 65, 85, 0.95);
+  border-color: rgba(148, 163, 184, 0.35);
+}
+.tabIdle:hover {
+  background: #e8eef6;
+  color: #0f172a;
+}
+
+/* -------------------- RESPONSIVE -------------------- */
+@media (max-width: 1024px) {
+  .inner {
+    padding: 0 18px;
+  }
+  .sectionTitle {
+    font-size: 46px;
+  }
+  .bigHeading {
+    font-size: 56px;
+    max-width: 100%;
+  }
+  .row {
+    gap: 26px;
+    padding: 34px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .inner {
+    padding: 0 12px;
+  }
+  .tabsScroller {
+    display: none;
+  }
+  .topHead {
+    padding-top: 44px;
+    padding-bottom: 26px;
+  }
+
+  .kickerWrap {
+    padding: 8px 14px;
+    gap: 10px;
+  }
+  .kickerLine {
+    width: 26px;
+  }
+  .kickerText {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+  }
+
+  .sectionTitle {
+    font-size: 34px;
+    line-height: 1.1;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 26px 0;
+  }
+
+  .content {
+    gap: 12px;
+  }
+
+  .bigHeading {
+    font-size: 1.5rem;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .paragraph {
+    font-size: 15px;
+    max-width: 100%;
+  }
+
+  .imageCol {
+    justify-content: flex-start;
+  }
+  .imageCard {
+    max-width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 18px 48px rgba(15, 23, 42, 0.12);
+  }
+
+  .tabBtn {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .inner {
+    padding: 0 10px;
+  }
+
+  .sectionTitle {
+    font-size: 30px;
+  }
+
+  .bigHeading {
+    font-size: 30px;
+  }
+
+  .tabBtn {
+    padding: 8px 10px;
+    font-size: 12px;
+    border-radius: 9px;
+  }
+}
+
+/* ---------- Font hooks (aap apna font-family yahan set kar saktay ho) ---------- */
+/* .kickerFont { font-family: "YourFont", sans-serif; } */
+/* .headingFont { font-family: "YourFont", sans-serif; } */
+/* .subFont { font-family: "YourFont", sans-serif; } */
