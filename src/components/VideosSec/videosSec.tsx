@@ -76,8 +76,8 @@ export default function CardsVideoSwitchSection({
         current.pause();
         current.currentTime = 0;
         current.load();
-        const p = current.play();
-        if (p && typeof (p as any).catch === "function") (p as any).catch(() => {});
+        const playResult = current.play();
+        void playResult?.catch(() => {});
       }
     } catch {}
   };
@@ -102,7 +102,6 @@ export default function CardsVideoSwitchSection({
 
   useEffect(() => {
     playIndex(0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

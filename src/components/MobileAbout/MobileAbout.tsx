@@ -94,25 +94,28 @@ export default function PaynexShowcaseSection({
         },
       });
 
-      tl.to(title, { autoAlpha: 1, y: 0, duration: 0.7, ease: "power3.out" })
-        .to(
+      tl.to(title, { autoAlpha: 1, y: 0, duration: 0.7, ease: "power3.out" });
+
+      if (phoneWrap) {
+        tl.to(
           phoneWrap,
           { autoAlpha: 1, y: 0, rotate: 0, duration: 0.9, ease: "power3.out" },
           "-=0.35"
-        )
-        .to(
-          cards,
-          {
-            autoAlpha: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.75,
-            ease: "power3.out",
-            stagger: 0.08,
-          },
-          "-=0.55"
-        )
-        .to(ctas, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.35");
+        );
+      }
+
+      tl.to(
+        cards,
+        {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.75,
+          ease: "power3.out",
+          stagger: 0.08,
+        },
+        "-=0.55"
+      ).to(ctas, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.35");
 
       if (phoneWrap) {
         gsap.to(phoneWrap, {

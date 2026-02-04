@@ -1,11 +1,5 @@
 "use client";
 
-import StickyPhoneShowcase from "../gsap/gsap";
-import GsapPhone from "../gsap/gsapPhone"
-import CardCarousel from "../../../../../components/CardCarousel/cardCarousel"
-import VideosSec from "../../../../../components/VideosSec/videosSec"
-import PhoneData from "../../../../../components/PhoneData/phoneData"
-import Banner from "../../../../../components/Banner/banner"
 import React from "react";
 import { motion } from "framer-motion";
 import {

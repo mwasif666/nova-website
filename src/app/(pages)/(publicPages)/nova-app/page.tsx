@@ -6,7 +6,6 @@ import VideosSec from "../../../../components/VideosSec/videosSec";
 import CardCarousel from "../../../../components/CardCarousel/cardCarousel";
 import PhoneData from "../../../../components/PhoneData/phoneData";
 import Banner from "../../../../components/Banner/banner";
-import MobileGrid from "../../../../components/MobileGrid/MobileGrid";
 import FutureBanner from "../../../../components/FutureBanner/FutureBanner";
 import MobileAbout from "../../../../components/MobileAbout/MobileAbout";
 import MobileAboutus from "../../../../components/MobileAboutus/MobileAboutus";
