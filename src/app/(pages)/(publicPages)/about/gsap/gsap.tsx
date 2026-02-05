@@ -14,6 +14,11 @@ type Asset = {
   to?: gsap.TweenVars;
 };
 
+type AssetElement = HTMLElement & {
+  __fromVars?: gsap.TweenVars;
+  __toVars?: gsap.TweenVars;
+};
+
 type Step = {
   kicker: string;
   title: string;
@@ -219,16 +224,16 @@ export default function StickyPhoneShowcase() {
         // assets swap
         assetsGroupRefs.current.forEach((g, idx) => {
           if (!g) return;
-          const assetsEls = gsap.utils.toArray<HTMLElement>(
+          const assetsEls = gsap.utils.toArray<AssetElement>(
             g.querySelectorAll("[data-asset]")
           );
 
           if (idx === i) {
             assetsEls.forEach((node) => {
               const fromVars =
-                (node as any).__fromVars ?? { y: 18, opacity: 0, scale: 0.9 };
+                node.__fromVars ?? { y: 18, opacity: 0, scale: 0.9 };
               const toVars =
-                (node as any).__toVars ?? {
+                node.__toVars ?? {
                   opacity: 1,
                   scale: 1,
                   duration: 0.35,
@@ -338,15 +343,16 @@ export default function StickyPhoneShowcase() {
                       key={a.id}
                       data-asset
                       src={a.src}
-                      className={a.className}
-                      alt=""
-                      ref={(el) => {
-                        if (!el) return;
-                        (el as any).__fromVars = a.from;
-                        (el as any).__toVars = a.to;
-                      }}
-                    />
-                  ))}
+                    className={a.className}
+                    alt=""
+                    ref={(el) => {
+                      if (!el) return;
+                      const assetEl = el as AssetElement;
+                      assetEl.__fromVars = a.from;
+                      assetEl.__toVars = a.to;
+                    }}
+                  />
+                ))}
                 </div>
               ))}
             </div>

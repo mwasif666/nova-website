@@ -13,6 +13,10 @@ type Props = {
   transitionMs?: number;
 };
 
+type CarouselStyle = React.CSSProperties & {
+  "--t"?: string;
+};
+
 export default function EverydayBenefitsCarousel({
   heading = "Everyday Crypto, Simplified",
   autoplayMs = 2500,
@@ -110,6 +114,10 @@ export default function EverydayBenefitsCarousel({
     return d;
   };
 
+  const stageStyle: CarouselStyle = {
+    "--t": `${transitionMs}ms`,
+  };
+
   return (
     <section className="eb-section">
       <div className="eb-inner">
@@ -117,11 +125,7 @@ export default function EverydayBenefitsCarousel({
 
         <div
           className="eb-stage"
-          style={
-            {
-              ["--t" as any]: `${transitionMs}ms`,
-            } as React.CSSProperties
-          }
+          style={stageStyle}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >

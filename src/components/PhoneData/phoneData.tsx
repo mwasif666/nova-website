@@ -82,7 +82,7 @@ export default function CommunitySection() {
 
   return (
     <section
-      ref={sectionRef as any}
+      ref={sectionRef}
       className="community-section"
       aria-label="Nova community"
     >
