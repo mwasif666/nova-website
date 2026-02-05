@@ -114,8 +114,8 @@ export default function Header() {
             { label: "Nova Wallet", isCategory: true },
             {
               label: "Nova App",
-              href: "/services/nfts",
-              desc: "Create and trade NFTs.",
+              href: "/nova-app",
+              desc: "All‑in‑one Web3 wallet.",
               icon: <FaImages size={14} className={styles.iconAccent} />,
             },
             
