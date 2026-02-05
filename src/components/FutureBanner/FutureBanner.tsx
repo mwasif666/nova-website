@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { FaApple, FaGooglePlay } from "react-icons/fa";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // import "./EpayHeroSection.css";
@@ -135,8 +136,9 @@ export default function EpayHeroSection() {
               </p>
 
               <a className="epay__btn" href="#download">
-                Get the Nova App
+                Get Started
               </a>
+                
             </div>
 
             <div className="epay__rating">
@@ -149,28 +151,42 @@ export default function EpayHeroSection() {
               </div>
 
               <div className="epay__ratingRow">
-                <div className="epay__ratingValue">24/7</div>
+                <div className="epay__ratingValue">24/7 </div>
                 <div className="epay__ratingMeta">
                   <div className="epay__ratingText">
-                    Real-time conversion
+                    Supported
                     <br />
                     and card control
                   </div>
 
-                  <div className="epay__avatars" aria-hidden="true">
-                    <img
-                      className="epay__avatar"
-                      src="https://templates.enativestudio.com/epay/wp-content/uploads/sites/6/elementor/thumbs/ginger-lady-in-eyeglasses-and-shirt-pointing-up-on-M4QZJLL-r1phy4fb7j42vla5jr2izm0en00yay1xfssg9ln0k0.jpg"
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <span className="epay__avatar ph" />
-                    <span className="epay__avatar ph" />
-                    <span className="epay__avatar plus">+</span>
-                  </div>
+                  
                 </div>
               </div>
+                <div className="rp-hero__actions">
+                              <a
+                                className="rp-hero__store rp-hero__store--apple"
+                                href="#download-ios"
+                                aria-label="Download on the App Store"
+                              >
+                                <FaApple className="rp-hero__storeIcon" aria-hidden="true" />
+                                <span className="rp-hero__storeText">
+                                  <span className="rp-hero__storeLabel">Download on the</span>
+                                  <span className="rp-hero__storeName">App Store</span>
+                                </span>
+                              </a>
+              
+                              <a
+                                className="rp-hero__store rp-hero__store--google"
+                                href="#download-android"
+                                aria-label="Get it on Google Play"
+                              >
+                                <FaGooglePlay className="rp-hero__storeIcon" aria-hidden="true" />
+                                <span className="rp-hero__storeText">
+                                  <span className="rp-hero__storeLabel">Get it on</span>
+                                  <span className="rp-hero__storeName">Google Play</span>
+                                </span>
+                              </a>
+                            </div>
             </div>
           </div>
           {/* /RIGHT */}

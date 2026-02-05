@@ -1,5 +1,6 @@
 // app/components/Header/Header.tsx  (or wherever you keep it)
 "use client";
+import { FaApple, FaGooglePlay } from "react-icons/fa";
 
 import React, { useMemo, useRef, useState } from "react";
 import Link from "next/link";
@@ -108,6 +109,16 @@ export default function Header() {
               desc: "Expert Web3 guidance.",
               icon: <FaLightbulb size={14} className={styles.iconAccent} />,
             },
+          ],
+           [
+            { label: "Nova Wallet", isCategory: true },
+            {
+              label: "Nova App",
+              href: "/services/nfts",
+              desc: "Create and trade NFTs.",
+              icon: <FaImages size={14} className={styles.iconAccent} />,
+            },
+            
           ],
         ],
       },
@@ -380,54 +391,86 @@ export default function Header() {
                   >
                     <div className={styles.dropdownInner}>
                       {item.dropdownColumns ? (
-                        <div className={styles.dropdownGrid}>
-                          {item.dropdownColumns.map((col, colIdx) => (
-                            <ul key={colIdx} className={styles.dropdownCol}>
-                              {col.map((d, i) =>
-                                d.isCategory ? (
-                                  <li
-                                    key={`${colIdx}-${i}`}
-                                    className={styles.category}
-                                  >
-                                    {d.label}
-                                  </li>
-                                ) : (
-                                  <li
-                                    key={`${colIdx}-${i}`}
-                                    ref={(node) => {
-                                      if (!node) return;
-                                      const arr =
-                                        dropdownItemRefs.current[item.label] ||
-                                        [];
-                                      arr.push(node);
-                                      dropdownItemRefs.current[item.label] =
-                                        arr;
-                                    }}
-                                  >
-                                    <Link
-                                      href={d.href ?? "#"}
-                                      className={styles.dropdownLink}
-                                      onClick={() => setDropdown(null)}
-                                    >
-                                      <span className={styles.iconBox}>
-                                        {d.icon}
-                                      </span>
-                                      <span className={styles.linkText}>
-                                        <span className={styles.linkTitle}>
-                                          {d.label}
-                                        </span>
-                                        {d.desc ? (
-                                          <span className={styles.linkDesc}>
-                                            {d.desc}
-                                          </span>
-                                        ) : null}
-                                      </span>
-                                    </Link>
-                                  </li>
-                                ),
-                              )}
-                            </ul>
-                          ))}
+                        <div
+  className={styles.dropdownGrid}
+  style={{ ["--cols" as any]: item.dropdownColumns.length }}
+>
+
+                          {item.dropdownColumns.map((col, colIdx) => {
+  const isNovaWalletCol =
+    item.label === "Nova Services" &&
+    col.some((x) => x.isCategory && x.label === "Nova Wallet");
+
+  return (
+    <ul key={colIdx} className={styles.dropdownCol}>
+      {col.map((d, i) =>
+        d.isCategory ? (
+          <li key={`${colIdx}-${i}`} className={styles.category}>
+            {d.label}
+          </li>
+        ) : (
+          <li
+            key={`${colIdx}-${i}`}
+            ref={(node) => {
+              if (!node) return;
+              const arr = dropdownItemRefs.current[item.label] || [];
+              arr.push(node);
+              dropdownItemRefs.current[item.label] = arr;
+            }}
+          >
+            <Link
+              href={d.href ?? "#"}
+              className={styles.dropdownLink}
+              onClick={() => setDropdown(null)}
+            >
+              <span className={styles.iconBox}>{d.icon}</span>
+              <span className={styles.linkText}>
+                <span className={styles.linkTitle}>{d.label}</span>
+                {d.desc ? <span className={styles.linkDesc}>{d.desc}</span> : null}
+              </span>
+            </Link>
+
+            {/* ✅ Buttons: only under Nova App inside Nova Wallet column */}
+            {isNovaWalletCol && d.label === "Nova App" && (
+              <div className={styles.storeActions}>
+                <a
+                  className={`${styles.storeBtn} ${styles.storeBtnApple}`}
+                  href="#download-ios"
+                  aria-label="Download on the App Store"
+                  onClick={() => setDropdown(null)}
+                >
+                  <span className={styles.storeIcon}>
+                    <FaApple size={16} aria-hidden="true" />
+                  </span>
+                  <span className={styles.storeText}>
+                    <span className={styles.storeLabel}>Download on the</span>
+                    <span className={styles.storeName}>App Store</span>
+                  </span>
+                </a>
+
+                <a
+                  className={`${styles.storeBtn} ${styles.storeBtnGoogle}`}
+                  href="#download-android"
+                  aria-label="Get it on Google Play"
+                  onClick={() => setDropdown(null)}
+                >
+                  <span className={styles.storeIcon}>
+                    <FaGooglePlay size={16} aria-hidden="true" />
+                  </span>
+                  <span className={styles.storeText}>
+                    <span className={styles.storeLabel}>Get it on</span>
+                    <span className={styles.storeName}>Google Play</span>
+                  </span>
+                </a>
+              </div>
+            )}
+          </li>
+        )
+      )}
+    </ul>
+  );
+})}
+
                         </div>
                       ) : (
                         <ul className={styles.dropdownList}>
