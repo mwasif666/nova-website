@@ -1075,7 +1075,7 @@ html {
 }
 
 .rp-hero__hand {
-  height: 115vh;         /* big for full-screen feel */
+  height: 110vh;         /* big for full-screen feel */
   width: auto;
   max-width: none;
   object-fit: contain;
@@ -1085,10 +1085,59 @@ html {
   user-select: none;
   pointer-events: none;
 }
-
+.nc-screenImg {
+    object-fit: contain;
+    transform-origin: 50%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: -10px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 620px;
+}
 /* ========== Responsive ========== */
+/* Mobile */
+@media (max-width: 767px) {
+   .rp-hero {
+    min-height: 580px;
+  }
 
-@media (max-width: 980px) {
+  .rp-hero__actions {
+    gap: 14px;
+  }
+
+  .rp-hero__store {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .rp-hero__cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .rp-hero__col--right {
+    height: 56vh;
+  }
+
+  .rp-hero__hand {
+    height: 72vh;
+  margin-top: -550px;
+  }
+  .rp-hero__title{
+    font-size: 20px;
+  }
+  .rp-hero__content {
+    max-width: 640px;
+    padding-top: 250px;
+    padding-right: 150px;
+}
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
   .rp-hero__container {
     width: min(1200px, calc(100% - 36px));
   }
@@ -1136,36 +1185,33 @@ html {
     margin-right: 0;
     transform: translateY(0);
   }
+
 }
 
-@media (max-width: 520px) {
-  .rp-hero {
-    min-height: 580px;
+/* Laptop */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .rp-hero__col--left{
+margin-left: 50px;
   }
-
-  .rp-hero__actions {
-    gap: 14px;
-  }
-
-  .rp-hero__store {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .rp-hero__cta {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .rp-hero__col--right {
-    height: 56vh;
-  }
-
-  .rp-hero__hand {
-    height: 72vh;
-  margin-top: -550px;
+.leftt{
+  margin-left: 50px;
+}
+  .rp-hero__title{
+    font-size: 60px;
   }
 }
+
+/* Desktop */
+@media (min-width: 1280px) and (max-width: 1535px) {}
+
+/* Large */
+@media (min-width: 1536px) {}
+
+
+
+
+
+
 
 
 /* Mobile Grid */
@@ -2337,15 +2383,15 @@ html {
 .aps {
   width: 100%;
   position: relative;
-  background:
+  /* background:
     radial-gradient(620px 360px at 10% 18%, rgba(48, 102, 134, 0.10), transparent 60%),
     radial-gradient(520px 320px at 88% 22%, rgba(48, 102, 134, 0.08), transparent 62%),
-    linear-gradient(180deg, #f9fbff 0%, #ffffff 55%, #f6f9fc 100%);
+    linear-gradient(180deg, #f9fbff 0%, #ffffff 55%, #f6f9fc 100%); */
   padding: 84px 0 92px;
   overflow: hidden;
 }
 
-.aps::before,
+/* .aps::before,
 .aps::after {
   content: "";
   position: absolute;
@@ -2356,7 +2402,7 @@ html {
   filter: blur(2px);
   pointer-events: none;
   opacity: 0.8;
-}
+} */
 
 .aps::before {
   left: -120px;

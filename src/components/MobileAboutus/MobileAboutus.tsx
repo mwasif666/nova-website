@@ -8,104 +8,126 @@ gsap.registerPlugin(ScrollTrigger);
 export default function AboutPaymentsSection() {
   const rootRef = useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return;
+useEffect(() => {
+  const root = rootRef.current;
+  if (!root) return;
 
-    const ctx = gsap.context(() => {
-      const kicker = root.querySelector(".aps__kicker");
-      const title = root.querySelector(".aps__title");
-      const text = root.querySelector(".aps__text");
-      const cards = gsap.utils.toArray<HTMLElement>(".aps__card");
-      const phone = root.querySelector(".aps__phone");
-      const blob = root.querySelector(".aps__blob");
-      const visual = root.querySelector(".aps__visual");
+  const ctx = gsap.context(() => {
+    const kicker = root.querySelector(".aps__kicker");
+    const title = root.querySelector(".aps__title");
+    const text = root.querySelector(".aps__text");
+    const cards = gsap.utils.toArray<HTMLElement>(".aps__card");
+    const phone = root.querySelector<HTMLElement>(".aps__phone");
+    const blob = root.querySelector<HTMLElement>(".aps__blob");
+    const visual = root.querySelector(".aps__visual");
 
-      gsap.set([kicker, title, text], { autoAlpha: 0, y: 22 });
-      gsap.set(cards, { autoAlpha: 0, y: 24, scale: 0.985 });
-      gsap.set(phone, { autoAlpha: 0, y: 30, rotate: 12, scale: 0.98 });
-      gsap.set(blob, { autoAlpha: 0, scale: 0.92 });
+    gsap.set([kicker, title, text], { autoAlpha: 0, y: 22 });
+    gsap.set(cards, { autoAlpha: 0, y: 24, scale: 0.985 });
+    gsap.set(phone, { autoAlpha: 0, y: 30, rotate: 12, scale: 0.98, transformOrigin: "50% 50%" });
+    gsap.set(blob, { autoAlpha: 0, scale: 0.92, transformOrigin: "50% 50%" });
 
-      const tl = gsap.timeline({
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: root,
+        start: "top 75%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    tl.to(kicker, { autoAlpha: 1, y: 0, duration: 0.55, ease: "power3.out" })
+      .to(title, { autoAlpha: 1, y: 0, duration: 0.7, ease: "power3.out" }, "-=0.25")
+      .to(text, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.35")
+      .to(blob, { autoAlpha: 1, scale: 1, duration: 0.7, ease: "power3.out" }, "-=0.35")
+      .to(
+        phone,
+        { autoAlpha: 1, y: 0, rotate: 10, scale: 1, duration: 0.85, ease: "power3.out" },
+        "-=0.55"
+      )
+      .to(
+        cards,
+        {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.65,
+          ease: "power3.out",
+          stagger: 0.12,
+        },
+        "-=0.45"
+      );
+
+    // ✅ 1) Continuous floating (noticeable up/down)
+    // (Starts after the entry animation so it feels premium)
+    if (phone) {
+      tl.add(() => {
+        gsap.to(phone, {
+          y: "+=14",              // up-down strength (increase for more)
+          rotate: "-=2.5",
+          duration: 2.2,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+        });
+      }, "-=0.25");
+    }
+
+    // ✅ 2) Scroll parallax (stronger + smooth, won't fight the float)
+    if (visual && phone) {
+      gsap.to(phone, {
+        y: -55,                  // scroll movement strength
+        rotate: 6.5,
+        ease: "none",
+        overwrite: "auto",
         scrollTrigger: {
           trigger: root,
-          start: "top 75%",
-          toggleActions: "play none none reverse",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.1,            // smoother scrub
         },
       });
+    }
 
-      tl.to(kicker, { autoAlpha: 1, y: 0, duration: 0.55, ease: "power3.out" })
-        .to(title, { autoAlpha: 1, y: 0, duration: 0.7, ease: "power3.out" }, "-=0.25")
-        .to(text, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.35")
-        .to(blob, { autoAlpha: 1, scale: 1, duration: 0.7, ease: "power3.out" }, "-=0.35")
-        .to(
-          phone,
-          { autoAlpha: 1, y: 0, rotate: 10, scale: 1, duration: 0.85, ease: "power3.out" },
-          "-=0.55"
-        )
-        .to(
-          cards,
-          {
-            autoAlpha: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.65,
-            ease: "power3.out",
-            stagger: 0.12,
-          },
-          "-=0.45"
-        );
-
-      if (visual) {
-        gsap.to(phone, {
-          y: -40,
-          rotate: 7,
-          ease: "none",
-          scrollTrigger: {
-            trigger: root,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
-
-        gsap.to(blob, {
-          y: 24,
-          scale: 1.05,
-          ease: "none",
-          scrollTrigger: {
-            trigger: root,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
-      }
-
-      cards.forEach((card, i) => {
-        const strength = 10 + i * 3;
-        gsap.to(card, {
-          y: -strength,
-          ease: "none",
-          scrollTrigger: {
-            trigger: root,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
+    if (visual && blob) {
+      gsap.to(blob, {
+        y: 32,
+        scale: 1.08,
+        ease: "none",
+        overwrite: "auto",
+        scrollTrigger: {
+          trigger: root,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.1,
+        },
       });
-    }, root);
+    }
 
-    return () => ctx.revert();
-  }, []);
+    // cards parallax (same)
+    cards.forEach((card, i) => {
+      const strength = 12 + i * 4;
+      gsap.to(card, {
+        y: -strength,
+        ease: "none",
+        scrollTrigger: {
+          trigger: root,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    });
+  }, root);
+
+  return () => ctx.revert();
+}, []);
+
 
   return (
     <section ref={rootRef} className="aps" aria-label="About section">
       <div className="aps__container">
         <div className="aps__row">
           {/* LEFT */}
-          <div className="aps__col aps__col--left">
+          <div className="aps__col aps__col--left leftt">
             <div className="aps__kicker">ABOUT NOVA</div>
 
             <h2 className="aps__title">

@@ -7,6 +7,7 @@ import Faqs from "@/components/main-ui-components/LandingPage/Faqs/Faqs";
 import FeaturedSlider from "@/components/main-ui-components/LandingPage/FeaturedIn/FeaturedIn";
 import HeroSection from "@/components/main-ui-components/LandingPage/HeroSection/HeroSection";
 import ProductTab from "@/components/main-ui-components/LandingPage/ProductsTab/ProductTab";
+
 import Trust from "@/components/main-ui-components/LandingPage/TrustSection/Trust";
 import AboutPaymentsSection from "@/components/MobileAboutus/MobileAboutus";
 import Stats from "@/components/reusablesComponents/Stats/Stats";
@@ -31,6 +32,7 @@ const Page = () => {
     <div className="">
       <HeroSection />
       <FeaturedSlider />
+      
       <EpayHeroSection />
       <ProductTab />
       <DeveloperSection />
