@@ -392,9 +392,13 @@ export default function Header() {
                     <div className={styles.dropdownInner}>
                       {item.dropdownColumns ? (
                         <div
-  className={styles.dropdownGrid}
-  style={{ ["--cols" as any]: item.dropdownColumns.length }}
->
+                          className={styles.dropdownGrid}
+                          style={
+                            {
+                              ["--cols"]: item.dropdownColumns.length,
+                            } as React.CSSProperties
+                          }
+                        >
 
                           {item.dropdownColumns.map((col, colIdx) => {
   const isNovaWalletCol =
