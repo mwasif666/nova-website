@@ -35,7 +35,7 @@ export default function CardsVideoSwitchSection({
         videoSrcMobile:
           "https://staticsource1.redotpay.com/web/video/home/virtual-card-mobile.mp4?t=1768989279850",
         videoSrcDesktop:
-          "https://staticsource1.redotpay.com/web/video/home/virtual-card.mp4?t=1768989279850",
+          "https://res.cloudinary.com/dmdfjexed/video/upload/v1771622491/WhatsApp_Video_2026-02-20_at_01.54.21_yv91nc.mp4",
       },
       {
         id: "physical",
@@ -47,10 +47,10 @@ export default function CardsVideoSwitchSection({
         videoSrcMobile:
           "https://staticsource1.redotpay.com/web/video/home/physical-card-mobile.mp4?t=1768989279850",
         videoSrcDesktop:
-          "https://staticsource1.redotpay.com/web/video/home/physical-card.mp4?t=1768989279850",
+          "https://res.cloudinary.com/dmdfjexed/video/upload/v1771622504/novacrest1_xfejrm.mp4",
       },
     ],
-    []
+    [],
   );
 
   const [active, setActive] = useState(0);
@@ -148,7 +148,25 @@ export default function CardsVideoSwitchSection({
           >
             {/* Slide 1 */}
             <div className="rp-slide">
-              <div className="rp-top">
+              <div className="rp-bgMedia">
+                <video
+                  ref={v0Ref}
+                  className="rp-bgVideo"
+                  muted
+                  playsInline
+                  preload="auto"
+                  onEnded={onEnded}
+                >
+                  <source
+                    src={data[0].videoSrcMobile}
+                    media="(max-width: 768px)"
+                  />
+                  <source src={data[0].videoSrcDesktop} />
+                </video>
+              </div>
+              <div className="rp-slideGradient" aria-hidden="true" />
+
+              <div className="rp-top rp-top--overlay">
                 <div className="rp-kicker">{data[0].kicker}</div>
                 <h2 className="rp-title">{data[0].title}</h2>
                 <p className="rp-sub">{data[0].subtitle}</p>
@@ -157,43 +175,45 @@ export default function CardsVideoSwitchSection({
                 </button>
               </div>
 
-              <div className="rp-media">
-                <div className="rp-videoFrame">
-                  <video
-                    ref={v0Ref}
-                    className="rp-video"
-                    muted
-                    playsInline
-                    preload="auto"
-                    onEnded={onEnded}
-                  >
-                    <source src={data[0].videoSrcMobile} media="(max-width: 768px)" />
-                    <source src={data[0].videoSrcDesktop} />
-                  </video>
-                </div>
-
-                <div className="rp-toggle">
-                  <button
-                    type="button"
-                    className={`rp-pill ${active === 0 ? "is-active" : ""}`}
-                    onClick={() => go(0)}
-                  >
-                    Virtual Card
-                  </button>
-                  <button
-                    type="button"
-                    className={`rp-pill ${active === 1 ? "is-active" : ""}`}
-                    onClick={() => go(1)}
-                  >
-                    Physical Card
-                  </button>
-                </div>
+              <div className="rp-toggle">
+                <button
+                  type="button"
+                  className={`rp-pill ${active === 0 ? "is-active" : ""}`}
+                  onClick={() => go(0)}
+                >
+                  Virtual Card
+                </button>
+                <button
+                  type="button"
+                  className={`rp-pill ${active === 1 ? "is-active" : ""}`}
+                  onClick={() => go(1)}
+                >
+                  Physical Card
+                </button>
               </div>
             </div>
 
             {/* Slide 2 */}
             <div className="rp-slide">
-              <div className="rp-top">
+              <div className="rp-bgMedia">
+                <video
+                  ref={v1Ref}
+                  className="rp-bgVideo"
+                  muted
+                  playsInline
+                  preload="auto"
+                  onEnded={onEnded}
+                >
+                  <source
+                    src={data[1].videoSrcMobile}
+                    media="(max-width: 768px)"
+                  />
+                  <source src={data[1].videoSrcDesktop} />
+                </video>
+              </div>
+              <div className="rp-slideGradient" aria-hidden="true" />
+
+              <div className="rp-top rp-top--overlay">
                 <div className="rp-kicker">{data[1].kicker}</div>
                 <h2 className="rp-title">{data[1].title}</h2>
                 <p className="rp-sub">{data[1].subtitle}</p>
@@ -202,37 +222,21 @@ export default function CardsVideoSwitchSection({
                 </button>
               </div>
 
-              <div className="rp-media">
-                <div className="rp-videoFrame">
-                  <video
-                    ref={v1Ref}
-                    className="rp-video"
-                    muted
-                    playsInline
-                    preload="auto"
-                    onEnded={onEnded}
-                  >
-                    <source src={data[1].videoSrcMobile} media="(max-width: 768px)" />
-                    <source src={data[1].videoSrcDesktop} />
-                  </video>
-                </div>
-
-                <div className="rp-toggle">
-                  <button
-                    type="button"
-                    className={`rp-pill ${active === 0 ? "is-active" : ""}`}
-                    onClick={() => go(0)}
-                  >
-                    Virtual Card
-                  </button>
-                  <button
-                    type="button"
-                    className={`rp-pill ${active === 1 ? "is-active" : ""}`}
-                    onClick={() => go(1)}
-                  >
-                    Physical Card
-                  </button>
-                </div>
+              <div className="rp-toggle">
+                <button
+                  type="button"
+                  className={`rp-pill ${active === 0 ? "is-active" : ""}`}
+                  onClick={() => go(0)}
+                >
+                  Virtual Card
+                </button>
+                <button
+                  type="button"
+                  className={`rp-pill ${active === 1 ? "is-active" : ""}`}
+                  onClick={() => go(1)}
+                >
+                  Physical Card
+                </button>
               </div>
             </div>
           </div>

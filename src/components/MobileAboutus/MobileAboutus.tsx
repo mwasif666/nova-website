@@ -16,85 +16,192 @@ export default function AboutPaymentsSection() {
       const kicker = root.querySelector(".aps__kicker");
       const title = root.querySelector(".aps__title");
       const text = root.querySelector(".aps__text");
-      const cards = gsap.utils.toArray<HTMLElement>(".aps__card");
-      const phone = root.querySelector(".aps__phone");
-      const blob = root.querySelector(".aps__blob");
+      const cards = gsap.utils.toArray<HTMLElement>(
+        root.querySelectorAll(".aps__card"),
+      );
+      const phone = root.querySelector(".aps__phone") as HTMLElement | null;
+      const blob = root.querySelector(".aps__blob") as HTMLElement | null;
       const visual = root.querySelector(".aps__visual");
 
-      gsap.set([kicker, title, text], { autoAlpha: 0, y: 22 });
-      gsap.set(cards, { autoAlpha: 0, y: 24, scale: 0.985 });
-      gsap.set(phone, { autoAlpha: 0, y: 30, rotate: 12, scale: 0.98 });
-      gsap.set(blob, { autoAlpha: 0, scale: 0.92 });
+      if (!phone || !blob) return;
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: root,
-          start: "top 75%",
-          toggleActions: "play none none reverse",
-        },
+      const mm = gsap.matchMedia();
+
+      // ----------------------------
+      // Shared "reveal" timeline
+      // (we keep rotate values per breakpoint below)
+      // ----------------------------
+      const buildReveal = (phoneRevealRotate: number) => {
+        gsap.set([kicker, title, text], { autoAlpha: 0, y: 22 });
+        gsap.set(cards, { autoAlpha: 0, y: 24, scale: 0.985 });
+        gsap.set(phone, {
+          autoAlpha: 0,
+          y: 30,
+          rotate: phoneRevealRotate,
+          scale: 0.98,
+        });
+        gsap.set(blob, { autoAlpha: 0, scale: 0.92 });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: root,
+            start: "top 75%",
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        tl.to(kicker, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.55,
+          ease: "power3.out",
+        })
+          .to(
+            title,
+            { autoAlpha: 1, y: 0, duration: 0.7, ease: "power3.out" },
+            "-=0.25",
+          )
+          .to(
+            text,
+            { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" },
+            "-=0.35",
+          )
+          .to(
+            blob,
+            { autoAlpha: 1, scale: 1, duration: 0.7, ease: "power3.out" },
+            "-=0.35",
+          )
+          .to(
+            phone,
+            {
+              autoAlpha: 1,
+              y: 0,
+              rotate: phoneRevealRotate, // keep same on reveal
+              scale: 1,
+              duration: 0.85,
+              ease: "power3.out",
+            },
+            "-=0.55",
+          )
+          .to(
+            cards,
+            {
+              autoAlpha: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.65,
+              ease: "power3.out",
+              stagger: 0.12,
+            },
+            "-=0.45",
+          );
+      };
+
+      // ----------------------------
+      // MOBILE: default 140deg -> on scroll 90deg
+      // ----------------------------
+      mm.add("(max-width: 767px)", () => {
+        // default rotation on load
+        buildReveal(140);
+
+        // Scroll rotation: 140 -> 90
+        if (visual) {
+          gsap.fromTo(
+            phone,
+            { rotate: 140 },
+            {
+              rotate: 90,
+              transformOrigin: "50% 50%",
+              ease: "none",
+              scrollTrigger: {
+                trigger: root,
+                start: "top 85%",
+                end: "bottom 20%",
+                scrub: 1.1,
+              },
+            },
+          );
+
+          gsap.to(blob, {
+            y: 24,
+            scale: 1.05,
+            ease: "none",
+            scrollTrigger: {
+              trigger: root,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        }
+
+        cards.forEach((card, i) => {
+          const strength = 10 + i * 3;
+          gsap.to(card, {
+            y: -strength,
+            ease: "none",
+            scrollTrigger: {
+              trigger: root,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        });
+
+        return () => {};
       });
 
-      tl.to(kicker, { autoAlpha: 1, y: 0, duration: 0.55, ease: "power3.out" })
-        .to(title, { autoAlpha: 1, y: 0, duration: 0.7, ease: "power3.out" }, "-=0.25")
-        .to(text, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.35")
-        .to(blob, { autoAlpha: 1, scale: 1, duration: 0.7, ease: "power3.out" }, "-=0.35")
-        .to(
-          phone,
-          { autoAlpha: 1, y: 0, rotate: 10, scale: 1, duration: 0.85, ease: "power3.out" },
-          "-=0.55"
-        )
-        .to(
-          cards,
-          {
-            autoAlpha: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.65,
-            ease: "power3.out",
-            stagger: 0.12,
-          },
-          "-=0.45"
-        );
+      // ----------------------------
+      // DESKTOP/TABLET: keep your old behavior (12 -> scrub to 0)
+      // ----------------------------
+      mm.add("(min-width: 768px)", () => {
+        buildReveal(10);
 
-      if (visual) {
-        gsap.to(phone, {
-          y: -40,
-          rotate: 7,
-          ease: "none",
-          scrollTrigger: {
-            trigger: root,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
+        if (visual) {
+          gsap.to(phone, {
+            rotate: 0,
+            transformOrigin: "50% 50%",
+            ease: "none",
+            scrollTrigger: {
+              trigger: root,
+              start: "top 85%",
+              end: "bottom 20%",
+              scrub: 1.1,
+            },
+          });
+
+          gsap.to(blob, {
+            y: 24,
+            scale: 1.05,
+            ease: "none",
+            scrollTrigger: {
+              trigger: root,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        }
+
+        cards.forEach((card, i) => {
+          const strength = 10 + i * 3;
+          gsap.to(card, {
+            y: -strength,
+            ease: "none",
+            scrollTrigger: {
+              trigger: root,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
         });
 
-        gsap.to(blob, {
-          y: 24,
-          scale: 1.05,
-          ease: "none",
-          scrollTrigger: {
-            trigger: root,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
-      }
-
-      cards.forEach((card, i) => {
-        const strength = 10 + i * 3;
-        gsap.to(card, {
-          y: -strength,
-          ease: "none",
-          scrollTrigger: {
-            trigger: root,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
+        return () => {};
       });
+
+      return () => mm.revert();
     }, root);
 
     return () => ctx.revert();
@@ -109,14 +216,15 @@ export default function AboutPaymentsSection() {
             <div className="aps__kicker">ABOUT NOVA</div>
 
             <h2 className="aps__title">
-              A fintech bridge between <span className="aps__titleAccent">crypto</span>
+              A fintech bridge between{" "}
+              <span className="aps__titleAccent">crypto</span>
               <br />
               and daily life
             </h2>
 
             <p className="aps__text">
-              Nova lets you use crypto like regular money. Pay online, in-store, or at
-              ATMs with cards backed by real-time conversion in the app.
+              Nova lets you use crypto like regular money. Pay online, in-store,
+              or at ATMs with cards backed by real-time conversion in the app.
             </p>
 
             <div className="aps__features">
@@ -184,7 +292,7 @@ export default function AboutPaymentsSection() {
               <div className="aps__blob" />
               <img
                 className="aps__phone"
-                src="https://templates.enativestudio.com/epay/wp-content/uploads/sites/6/2025/02/Mockup-2.png"
+                src="https://res.cloudinary.com/dmdfjexed/image/upload/v1771627261/App_Launch_Your_Story_in_Black_Bright_Green_Cool_Corporate_Style_1_x1sckw.png"
                 alt=""
                 loading="lazy"
               />

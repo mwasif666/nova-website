@@ -22,9 +22,9 @@ export default function RedotPayHero() {
               </h1>
 
               <p className="rp-hero__desc">
-                Nova turns USDT and other crypto into real-world payments. Your balance
-                converts to local currency in real time, so you can shop online, pay
-                bills, travel, or withdraw cash at ATMs.
+                Nova turns USDT and other crypto into real-world payments. Your
+                balance converts to local currency in real time, so you can shop
+                online, pay bills, travel, or withdraw cash at ATMs.
               </p>
 
               <div className="rp-hero__actions">
@@ -45,7 +45,10 @@ export default function RedotPayHero() {
                   href="#download-android"
                   aria-label="Get it on Google Play"
                 >
-                  <FaGooglePlay className="rp-hero__storeIcon" aria-hidden="true" />
+                  <FaGooglePlay
+                    className="rp-hero__storeIcon"
+                    aria-hidden="true"
+                  />
                   <span className="rp-hero__storeText">
                     <span className="rp-hero__storeLabel">Get it on</span>
                     <span className="rp-hero__storeName">Google Play</span>
@@ -60,7 +63,7 @@ export default function RedotPayHero() {
             <div className="rp-hero__visual">
               <img
                 className="rp-hero__hand"
-                src="https://html.bslthemes.com/plax-demo/img/home-5/1.png"
+                src="https://res.cloudinary.com/dmdfjexed/image/upload/v1771624915/WhatsApp_Image_2026-02-20_at_14.54.02_cmk0oc.png"
                 alt=""
                 loading="eager"
               />

@@ -3,8 +3,8 @@
 // import StickyPhoneShowcase from "../gsap/gsap";
 import GsapPhone from "../about/gsap/gsapPhone";
 import VideosSec from "../../../../components/VideosSec/videosSec";
-import CardCarousel from "../../../../components/CardCarousel/cardCarousel";
-import PhoneData from "../../../../components/PhoneData/phoneData";
+// import CardCarousel from "../../../../components/CardCarousel/cardCarousel";
+// import PhoneData from "../../../../components/PhoneData/phoneData";
 import Banner from "../../../../components/Banner/banner";
 import FutureBanner from "../../../../components/FutureBanner/FutureBanner";
 import MobileAbout from "../../../../components/MobileAbout/MobileAbout";
@@ -25,23 +25,20 @@ export default function OurCompanyPage() {
       {/* MobileAboutus */}
       <MobileAboutus />
 
-      {/* <StickyPhoneShowcase /> */}
-      <GsapPhone />
-
+      {/* FutureBanner */}
+      <FutureBanner />
       {/* CardCarousel */}
-      <CardCarousel />
+      {/* <CardCarousel /> */}
 
       {/* VideosSec */}
       <VideosSec />
-
+      {/* <StickyPhoneShowcase /> */}
+      <GsapPhone />
       {/* Phone Data */}
-      <PhoneData />
+      {/* <PhoneData /> */}
 
       {/* MobileGrid */}
       {/* <MobileGrid /> */}
-
-      {/* FutureBanner */}
-      <FutureBanner />
 
       {/* MobileAbout */}
       <MobileAbout />

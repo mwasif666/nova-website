@@ -62,7 +62,8 @@ type Props = {
 };
 
 export default function PaynexShowcaseSection({
-  phoneImage = "https://www.wordpress-dev.codeinsolution.com/paynex/wp-content/uploads/sites/90/2025/12/Home-Screen-Mockup-min-520x1024.png",
+  // phoneImage = "https://www.wordpress-dev.codeinsolution.com/paynex/wp-content/uploads/sites/90/2025/12/Home-Screen-Mockup-min-520x1024.png",
+  phoneImage = "https://res.cloudinary.com/dmdfjexed/image/upload/v1771626984/726857f8-ae31-418d-9c77-bd1aa43dd513_removalai_preview_xqpx38.png",
 }: Props) {
   const rootRef = useRef<HTMLElement | null>(null);
 
@@ -100,7 +101,7 @@ export default function PaynexShowcaseSection({
         tl.to(
           phoneWrap,
           { autoAlpha: 1, y: 0, rotate: 0, duration: 0.9, ease: "power3.out" },
-          "-=0.35"
+          "-=0.35",
         );
       }
 
@@ -114,8 +115,12 @@ export default function PaynexShowcaseSection({
           ease: "power3.out",
           stagger: 0.08,
         },
-        "-=0.55"
-      ).to(ctas, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.35");
+        "-=0.55",
+      ).to(
+        ctas,
+        { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" },
+        "-=0.35",
+      );
 
       if (phoneWrap) {
         gsap.to(phoneWrap, {
@@ -145,7 +150,9 @@ export default function PaynexShowcaseSection({
       });
 
       const mm = gsap.matchMedia();
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
 
       mm.add("(min-width: 521px)", () => {
         if (reduceMotion || !phone) return;
@@ -231,14 +238,20 @@ export default function PaynexShowcaseSection({
         <div className="pss__grid">
           {/* Card 1 */}
           <article className="pss__card pss__card--tl" data-p="18">
-            <span className="pss__icon" dangerouslySetInnerHTML={{ __html: FEATURES[0].icon }} />
+            <span
+              className="pss__icon"
+              dangerouslySetInnerHTML={{ __html: FEATURES[0].icon }}
+            />
             <h3 className="pss__cardTitle">{FEATURES[0].title}</h3>
             <p className="pss__cardText">{FEATURES[0].desc}</p>
           </article>
 
           {/* Card 2 */}
           <article className="pss__card pss__card--tr" data-p="14">
-            <span className="pss__icon" dangerouslySetInnerHTML={{ __html: FEATURES[1].icon }} />
+            <span
+              className="pss__icon"
+              dangerouslySetInnerHTML={{ __html: FEATURES[1].icon }}
+            />
             <h3 className="pss__cardTitle">{FEATURES[1].title}</h3>
             <p className="pss__cardText">{FEATURES[1].desc}</p>
           </article>
@@ -246,26 +259,38 @@ export default function PaynexShowcaseSection({
           {/* Phone (center on desktop, after cards on mobile due to flex order) */}
           <div className="pss__phoneWrap" aria-hidden="true">
             <div className="pss__phoneGlow" />
-            <img className="pss__phone" src={phoneImage} alt="" loading="lazy" />
+            <img
+              className="pss__phone"
+              src={phoneImage}
+              alt=""
+              loading="lazy"
+            />
           </div>
 
           {/* Card 3 */}
           <article className="pss__card pss__card--bl" data-p="16">
-            <span className="pss__icon" dangerouslySetInnerHTML={{ __html: FEATURES[2].icon }} />
+            <span
+              className="pss__icon"
+              dangerouslySetInnerHTML={{ __html: FEATURES[2].icon }}
+            />
             <h3 className="pss__cardTitle">{FEATURES[2].title}</h3>
             <p className="pss__cardText">{FEATURES[2].desc}</p>
           </article>
 
           {/* Card 4 */}
           <article className="pss__card pss__card--br" data-p="20">
-            <span className="pss__icon" dangerouslySetInnerHTML={{ __html: FEATURES[3].icon }} />
+            <span
+              className="pss__icon"
+              dangerouslySetInnerHTML={{ __html: FEATURES[3].icon }}
+            />
             <h3 className="pss__cardTitle">{FEATURES[3].title}</h3>
             <p className="pss__cardText">{FEATURES[3].desc}</p>
           </article>
         </div>
 
         <p className="pss__sub">
-          Nova bridges crypto and everyday spending with real-time conversion and
+          Nova bridges crypto and everyday spending with real-time conversion
+          and
           <br />
           card controls you manage from your phone.
         </p>

@@ -36,7 +36,7 @@ export default function EpayHeroSection() {
         .to(
           title,
           { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" },
-          "-=0.2"
+          "-=0.2",
         )
         .to(
           [leftCard, phones, right],
@@ -47,12 +47,12 @@ export default function EpayHeroSection() {
             ease: "power3.out",
             stagger: 0.12,
           },
-          "-=0.15"
+          "-=0.15",
         )
         .to(
           rating,
           { autoAlpha: 1, y: 0, duration: 0.7, ease: "power3.out" },
-          "-=0.45"
+          "-=0.45",
         );
 
       if (phones) {
@@ -113,7 +113,7 @@ export default function EpayHeroSection() {
           <div className="epay__center">
             <img
               className="epay__phones"
-              src="https://templates.enativestudio.com/epay/wp-content/uploads/sites/6/2025/02/Mockup-1.png"
+              src="https://res.cloudinary.com/dmdfjexed/image/upload/v1771656185/nova_userpanel_mobile_app_tzc0g9.png"
               alt="Mobile app mockup"
               loading="eager"
               decoding="async"
@@ -130,8 +130,9 @@ export default function EpayHeroSection() {
               </h3>
 
               <p className="epay__rightText">
-                Nova gives you virtual and physical cards with real-time conversion so you
-                can shop online, pay bills, travel, or withdraw cash at ATMs.
+                Nova gives you virtual and physical cards with real-time
+                conversion so you can shop online, pay bills, travel, or
+                withdraw cash at ATMs.
               </p>
 
               <a className="epay__btn" href="#download">
