@@ -46,11 +46,12 @@ export default function HeroSection() {
 
           <Link className="" href={"#servicesTab"}>
             <Button
-              className="bg-secondary text-dark hover:bg-secondary/90"
+              className="bg-secondary text-dark hover:bg-secondary/90 wallet-portal"
               variant="default"
             >
-              Explore our Services
+              Wallet Portal
             </Button>
+            
           </Link>
         </div>
       </div>

@@ -107,13 +107,83 @@
   display: inline-flex;
 }
 
+/* App store buttons inside dropdown */
+.storeActions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 0 10px 6px;
+}
+
+.storeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(30, 89, 124, 0.12);
+  box-shadow: 0 10px 22px rgba(16, 24, 40, 0.08);
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    opacity 160ms ease;
+  width: 100%;
+  max-width: 220px;
+}
+
+.storeBtn:hover {
+  transform: translateY(-1px);
+  opacity: 0.96;
+}
+
+.storeBtnApple {
+  background: rgba(16, 24, 40, 0.04);
+}
+
+.storeBtnGoogle {
+  background: rgba(30, 89, 124, 0.06);
+}
+
+.storeIcon {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 89, 124, 0.07);
+  border: 1px solid rgba(30, 89, 124, 0.12);
+  color: #1e597c;
+}
+
+.storeText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.1;
+}
+
+.storeLabel {
+  font-size: 11px;
+  font-weight: 800;
+  color: rgba(16, 24, 40, 0.62);
+}
+
+.storeName {
+  font-size: 14px;
+  font-weight: 900;
+  color: #101828;
+}
+
 /* Dropdown panel */
 .dropdown {
   position: absolute;
   left: 0;
   top: 100%;
   width: max-content;
-  max-width: 90vw;
+  max-width: min(1100px, 96vw);
   z-index: 60;
   padding-top: 12px;
 }
@@ -125,11 +195,12 @@
   box-shadow: 0 18px 50px rgba(16, 24, 40, 0.16);
   padding: 14px;
   overflow: hidden;
+  max-width: min(1100px, 96vw);
 }
 
 .dropdownGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr));
   gap: 10px;
 }
 
@@ -430,6 +501,60 @@
     display: none !important;
   }
 }
+
+/* ✅ FIX FOR 13-inch / <=1366: stop weird centering, keep dropdown inside viewport */
+@media (max-width: 1366px) {
+  .dropdown {
+    /* anchor to the right edge of the nav item so it doesn't overflow screen */
+    left: -200px !important;
+    right: 0;
+    transform: none;
+
+    /* keep dropdown always inside viewport */
+    width: min(700px, calc(100vw - 40px));
+    max-width: calc(100vw - 40px);
+  }
+
+  .dropdownInner {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+  }
+
+  .dropdownGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .linkDesc {
+    font-size: 12px;
+  }
+
+  /* make store buttons slightly smaller to avoid pushing width */
+  .storeBtn {
+    max-width: 205px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .dropdown {
+    width: min(720px, calc(100vw - 32px));
+    max-width: calc(100vw - 32px);
+  }
+
+  .dropdownGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .storeActions {
+    padding: 0 6px 6px;
+  }
+
+  .storeBtn {
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 769px) {
   .container {
     padding: 20px 10px;
