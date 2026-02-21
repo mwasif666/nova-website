@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const categories = ["All", "Blockchain", "DeFi", "NFTs", "Web3", "Trading"];
+const ACCENT = "#133e5b";
 
 const blogs = [
   {
@@ -118,20 +119,29 @@ export default function NovaAcademyPage() {
           className="relative z-10"
         >
           <div className="flex justify-center">
-            <div className="inline-flex items-center gap-3 rounded-full border border-[#296a92]/15 bg-[#296a92]/5 px-6 py-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-[#296a92]" />
-              <span className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#296a92]">
+            <div
+              className="inline-flex items-center gap-3 rounded-full border px-6 py-2"
+              style={{ borderColor: `${ACCENT}55`, backgroundColor: `${ACCENT}18` }}
+            >
+              <span
+                className="h-2.5 w-2.5 rounded-full"
+                style={{ backgroundColor: ACCENT }}
+              />
+              <span
+                className="text-[12px] font-semibold uppercase tracking-[0.28em]"
+                style={{ color: ACCENT }}
+              >
                 Learn & Level Up
               </span>
             </div>
           </div>
 
-          <h1 className="mt-6 text-5xl md:text-6xl font-extrabold text-gray-900">
+          <h1 className="mt-6 text-5xl md:text-6xl font-extrabold text-slate-950">
             Nova Academy
-            <span className="text-[#296a92]">.</span>
+            <span style={{ color: ACCENT }}>.</span>
           </h1>
 
-          <p className="text-lg md:text-xl mt-6 max-w-2xl mx-auto text-gray-600">
+          <p className="text-lg md:text-xl mt-6 max-w-2xl mx-auto text-slate-700">
             Learn Blockchain, Web3, NFTs, and DeFi — all in one place. Knowledge
             powered by Nova.
           </p>
@@ -142,15 +152,16 @@ export default function NovaAcademyPage() {
       <div className="max-w-6xl mx-auto px-4 mt-2 flex flex-col items-center justify-between gap-4 relative z-10">
         {/* Search */}
         <div className="relative w-full md:w-1/2">
-          <Search className="absolute left-3 top-3 text-gray-400" size={18} />
+          <Search className="absolute left-3 top-3 text-slate-500" size={18} />
           <input
             type="text"
             placeholder="Search blogs or videos..."
             className="w-full pl-10 pr-4 py-3 rounded-2xl bg-white
-              border border-gray-200 text-gray-800 placeholder-gray-400
-              focus:outline-none focus:border-[#296a92]
+              border border-slate-300 text-slate-900 placeholder-slate-500
+              focus:outline-none
               shadow-[0_10px_30px_rgba(17,24,39,0.06)]
               transition-all"
+            style={{ outlineColor: ACCENT, caretColor: ACCENT }}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -167,9 +178,20 @@ export default function NovaAcademyPage() {
                 className={`rounded-full px-5 py-2 transition-all duration-300 border
                   ${
                     active
-                      ? "bg-[#296a92] text-white border-[#296a92]  hover:bg-[#296a92]"
-                      : "bg-white border-gray-200 text-gray-700 hover:border-[#296a92]/40 hover:text-[#296a92]"
+                      ? "text-white hover:opacity-95"
+                      : "bg-white border-slate-300 text-slate-800"
                   }`}
+                style={
+                  active
+                    ? {
+                        backgroundColor: ACCENT,
+                        borderColor: ACCENT,
+                      }
+                    : {
+                        borderColor: `${ACCENT}55`,
+                        color: ACCENT,
+                      }
+                }
                 onClick={() => setSelectedCategory(cat)}
               >
                 <Tag size={14} className="mr-1" /> {cat}

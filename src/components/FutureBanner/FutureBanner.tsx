@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { FaApple, FaGooglePlay } from "react-icons/fa";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useDialogStore } from "@/store/useDialogStore";
 
 // import "./EpayHeroSection.css";
 
@@ -9,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function EpayHeroSection() {
   const rootRef = useRef<HTMLElement | null>(null);
+  const { open } = useDialogStore();
 
   useEffect(() => {
     const root = rootRef.current;
@@ -136,9 +138,9 @@ export default function EpayHeroSection() {
                 withdraw cash at ATMs.
               </p>
 
-              <a className="epay__btn" href="#download">
+              <button type="button" className="epay__btn" onClick={open}>
                 Get Started
-              </a>
+              </button>
                 
             </div>
 
@@ -163,28 +165,28 @@ export default function EpayHeroSection() {
                   
                 </div>
               </div>
-                <div className="rp-hero__actions">
+                <div className="epay__downloadRow">
                               <a
-                                className="rp-hero__store rp-hero__store--apple"
+                                className="epay__store epay__store--apple"
                                 href="#download-ios"
                                 aria-label="Download on the App Store"
                               >
-                                <FaApple className="rp-hero__storeIcon" aria-hidden="true" />
-                                <span className="rp-hero__storeText">
-                                  <span className="rp-hero__storeLabel">Download on the</span>
-                                  <span className="rp-hero__storeName">App Store</span>
+                                <FaApple className="epay__storeIcon" aria-hidden="true" />
+                                <span className="epay__storeText">
+                                  <span className="epay__storeLabel">Download on the</span>
+                                  <span className="epay__storeName">App Store</span>
                                 </span>
                               </a>
               
                               <a
-                                className="rp-hero__store rp-hero__store--google"
+                                className="epay__store epay__store--google"
                                 href="#download-android"
                                 aria-label="Get it on Google Play"
                               >
-                                <FaGooglePlay className="rp-hero__storeIcon" aria-hidden="true" />
-                                <span className="rp-hero__storeText">
-                                  <span className="rp-hero__storeLabel">Get it on</span>
-                                  <span className="rp-hero__storeName">Google Play</span>
+                                <FaGooglePlay className="epay__storeIcon" aria-hidden="true" />
+                                <span className="epay__storeText">
+                                  <span className="epay__storeLabel">Get it on</span>
+                                  <span className="epay__storeName">Google Play</span>
                                 </span>
                               </a>
                             </div>

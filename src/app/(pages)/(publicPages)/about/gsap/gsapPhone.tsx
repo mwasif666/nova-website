@@ -69,7 +69,7 @@ export default function StickyPhoneShowcase() {
                 }`}
               >
                 <div className="w-full md:w-1/2">
-                  <p className="text-primary text-sm font-semibold md:text-base">
+                  <p className="inline-flex items-center whitespace-nowrap rounded-full border border-[#b8c9da] bg-[#d8e3ee] px-5 py-2 text-[12px] font-semibold tracking-[0.2em] text-[#071a4a] uppercase shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] md:px-6 md:py-2.5 md:text-[13px] md:tracking-[0.24em]">
                     {s.kicker}
                   </p>
                   <h2 className="mt-3 text-[2.5rem] leading-[1.08] font-semibold text-black">

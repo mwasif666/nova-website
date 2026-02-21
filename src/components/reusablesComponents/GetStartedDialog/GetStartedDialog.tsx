@@ -107,7 +107,7 @@ export default function GetStartedDialog() {
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && close()}>
-      <DialogContent className=" sm:max-w-md rounded-2xl shadow-lg p-6 max-h-[85vh] md:max-h-[90vh] overflow-y-auto mx-auto">
+      <DialogContent className="bg-white text-slate-900 border border-slate-200 sm:max-w-md rounded-2xl shadow-lg p-6 max-h-[85vh] md:max-h-[90vh] overflow-y-auto mx-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl font-semibold text-center">
             Get Started

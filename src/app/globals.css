@@ -2112,7 +2112,7 @@ html {
 
 .epay__title {
   margin: 14px 0 0;
-  font-size: clamp(34px, 4.2vw, 58px);
+  font-size: clamp(32px, 3.6vw, 52px);
   line-height: 1.06;
   letter-spacing: -0.03em;
   font-weight: 800;
@@ -2259,6 +2259,66 @@ html {
   color: rgba(12, 18, 51, 0.62);
 }
 
+.epay__downloadRow {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.epay__store {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 178px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 12px 28px rgba(11, 16, 32, 0.2);
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease;
+}
+
+.epay__store:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+}
+
+.epay__store--apple {
+  background: #0f1117;
+}
+
+.epay__store--google {
+  background: linear-gradient(135deg, #2ea664 0%, #2b7fd8 100%);
+}
+
+.epay__storeIcon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.epay__storeText {
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 1.04;
+}
+
+.epay__storeLabel {
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.88;
+}
+
+.epay__storeName {
+  font-size: 16px;
+  font-weight: 600;
+}
+
 .epay__avatars {
   display: flex;
   align-items: center;
@@ -2324,6 +2384,10 @@ html {
   .epay__avatars {
     justify-content: center;
   }
+
+  .epay__downloadRow {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 520px) {
@@ -2345,6 +2409,16 @@ html {
 
   .epay__ratingValue {
     font-size: 40px;
+  }
+
+  .epay__store {
+    width: 100%;
+    max-width: 270px;
+    justify-content: center;
+  }
+
+  .epay__storeName {
+    font-size: 15px;
   }
 }
 
